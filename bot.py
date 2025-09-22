@@ -1105,7 +1105,7 @@ async def create_vps_command(ctx, memory: int, cpu: int, disk: int, owner: disco
             if use_custom_image:
                 embed.add_field(name="🔑 Root Password", value=f"||{root_password}||", inline=False)
             embed.add_field(name="🔒 Tmate Session", value=f"```{ssh_session_line}```", inline=False)
-            embed.add_field(name="🔌 Direct SSH", value=f"```ssh {username}@<server-ip>```", inline=False)
+            embed.add_field(name="🔌 Direct SSH", value=f"```ssh {username}@<random -p 22>```", inline=False)
             embed.add_field(name="ℹ️ Note", value="This is a UnixNodes VPS instance. You can install and configure additional packages as needed.", inline=False)
             
             await owner.send(embed=embed)
@@ -1310,8 +1310,8 @@ async def connect_vps(ctx, token: str):
 4. You will be connected to your UnixNodes VPS
 
 Or use direct SSH:
-```ssh {username}@<server-ip>```
-""".format(username=vps["username"]), inline=False)
+```ssh {username}@<random>```
+""".format(username=vps["random"]), inline=False)
         
         await ctx.author.send(embed=embed)
         await ctx.send("✅ Connection details sent to your DMs! Use the Tmate command to connect to your UnixNodes VPS.", ephemeral=True)
@@ -2655,4 +2655,5 @@ if __name__ == "__main__":
         logger.error(f"Bot crashed: {e}")
 
         traceback.print_exc()
+
 
